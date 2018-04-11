@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.appfone.bharathiya.pojo.Byodhaarticles;
 import com.appfone.bharathiya.pojo.Byodhabanner;
 import com.appfone.bharathiya.pojo.Byodhacomments;
+import com.appfone.bharathiya.pojo.Byodhareply;
 import com.appfone.bharathiya.service.AdminArticleService;
 import com.appfone.bharathiya.service.AdminCommentService;
 import com.appfone.bharathiya.service.AdminLoginService;
@@ -471,10 +472,6 @@ public class BharathiyaController {
 		
 	}
 	
-	
-	
-	
-	
 	@RequestMapping(value="/index")
 	public ModelAndView indexController()
 	{
@@ -523,6 +520,9 @@ public class BharathiyaController {
 		commentservice.saveComment(commnet);
 		return "redirect:/viewarticle.html?article_id="+commentarticleid+"";
 	}
+	
+	
+	
 	
 	
 	

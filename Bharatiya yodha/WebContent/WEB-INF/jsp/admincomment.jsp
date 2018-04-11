@@ -142,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <section id="main-content">
 	
 		<div class="table-agile-info">
-  <div class="panel panel-default">
+  <div class="panel panel-default" style="margin-top: 10%;">
     <div class="panel-heading">
       Comments
     </div>
@@ -161,9 +161,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
        
         
         <c:forEach var="commentlist" items="${commentarticles}">
+        
         <c:url var="deletecomment"  value="admindeletecomment.html">
         <c:param name="comment_id" value="${commentlist.comment_id}"></c:param>
         
+        </c:url>
+        <c:url var="replay1" value="index.html">
+      	
         </c:url>
 	 <tr>
 	 <td>${commentlist.commenter_name}</td>
@@ -173,7 +177,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 
 			<td>
 		  <a href="${deletecomment}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-		  <i class="fa fa-reply" aria-hidden="true"></i>
+		  <a href="${replay1}"><i class="fa fa-reply" aria-hidden="true"></i></a>
 		  </td>
 		  
 		   </tr>

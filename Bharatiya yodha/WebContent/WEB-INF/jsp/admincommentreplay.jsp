@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>  
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
-<title>Bharathiya Yodha::Admin</title>
+<title>Navarasa Natana Academy::Admin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -11,7 +11,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
 <link rel="stylesheet" href="admincss/bootstrap.min.css" >
-<!-- //bootstrap-css -->                      
+<!-- //bootstrap-css -->
 <!-- Custom CSS -->
 <link href="admincss/style.css" rel='stylesheet' type='text/css' />
 <link href="admincss/style-responsive.css" rel="stylesheet"/>
@@ -28,8 +28,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="adminjs/jquery2.0.3.min.js"></script>
 <script src="adminjs/raphael-min.js"></script>
 <script src="adminjs/morris.js"></script>
-<link rel="stylesheet" href="admincss/lightbox.css">
- <script src="adminjs/lightbox-plus-jquery.min.js"> </script>
 </head>
 <body>
 <section id="container">
@@ -145,25 +143,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-12" id="bannerbanner">
                     <section class="panel">
                         <header class="panel-heading">
-                            Banner
+                           Comment Replay
                         </header>
                         <div class="panel-body">
                             <div >
-                                <form:form method="post" modelAttribute="adbanner" action="saveadminbanner.html" enctype="multipart/form-data">
-                                <input type="hidden" name="bannersize" id="bannersize" value="${adbannersize}"/>
+                               <form:form method="post" modelAttribute="adminreplay" action="saveadminreplay.html">
+                               <input type="hidden" name="replyartid" value="${replyartid}">
+                               <input type="hidden" name="replycmtid" value="${replycmtid}">
+                               
                                 <div class="col-md-3">
-                                <form:input path="banner_caption" placeholder="banner_caption" name="banner_caption"  required="required"/>
-                                </div>
+                                <form:input path="replayer_name" placeholder="Replayer Name"/>
+                            	 </div>
                                 
                                  <div class="col-md-3">
-                                <form:input path="banner_content" placeholder="banner_content" name="banner_content"  required="required"/>
+									<form:input path="replay_msg" placeholder="Replay Message"/>                              
                                 </div>
                                 
 								
                                 <div class="col-md-3">
-                                   <label>Upload Banner Image</label>
-                                    <input type="file" name="bannerfile" id="exampleInputFile" placeholder="File input">
-                                </div>
+                                   </div>
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-info" style="margin-top:-2%">Submit</button>
                                 </div>
@@ -174,64 +172,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </section>
             </div>
 </section>
-		<div class="table-agile-info">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      Banner Information
-    </div>
-     <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
-        <thead>
-          <tr>
-            <th>Banner_image</th>
-            <th>Banner_caption</th>
-            <th>Banner_content</th>
-			
-            <th> Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="bannerlist" items="${adbannerlist}">
-        
-        <c:url var="deleteadminbanner" value="deleteadminbanner.html">
-        <c:param name="banner_id" value="${bannerlist.banner_id}"></c:param>
-        <c:param name="banner_image" value="${bannerlist.banner_image}"></c:param>
-        </c:url>
-        
-        <c:url var="editadminbanner" value="editadminbanner.html">
-        <c:param name="banner_id" value="${bannerlist.banner_id}"></c:param>
-        <c:param name="banner_image" value="${bannerlist.banner_image}"></c:param>
-        
-        </c:url>
-        
-        
-	 <tr>
-	 <td>${bannerlist.banner_caption}</td>
-	 <td>${bannerlist.banner_content}</td>
-            <td>
-			<a class="example-image-link" href="images/banner/${bannerlist.banner_image}" data-lightbox="example-set" >		
-	<img src="images/banner/${bannerlist.banner_image}" alt="" width="70%"/>
-	</a>
-			<!-- //gallery -->
-			</td>
-			<td>
-		  <a href="${deleteadminbanner}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-		  <a href="${editadminbanner}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-		  </td>
-		 
-		   </tr>
-		   </c:forEach>
-    
-		    <script src="adminjs/lightbox-plus-jquery.min.js"> </script>
-	
-        </tbody>
-      </table>
-      <tag:paginate max="10" offset="${offset}" count="${count}" uri="/adminbanner.html" next="&raquo;" previous="&laquo;"/>
-    
-    </div>
-    
-  </div>
-</div>
+		
  <!-- footer -->
 		  <div class="footer">
 			<div class="wthree-copyright">
