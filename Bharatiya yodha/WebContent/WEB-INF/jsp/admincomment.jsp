@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
 <title>Navarasa Natana Academy::Admin</title>
@@ -155,6 +155,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th style="width:20%">Commenter Message</th>
             <th style="width:20%">For Article
             <th style="width:20%"> Action</th>
+            <th style="width:20%">Rply for comment</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -166,8 +168,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <c:param name="comment_id" value="${commentlist.comment_id}"></c:param>
         
         </c:url>
-        <c:url var="replay1" value="index.html">
-      	
+        <c:url var="replay1" value="admincommentreplay.html">
+        <c:param name="article_id" value="${commentlist.article.article_id}"></c:param>
+      	<c:param name="comment_id" value="${commentlist.comment_id}"></c:param>
         </c:url>
 	 <tr>
 	 <td>${commentlist.commenter_name}</td>
@@ -179,6 +182,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  <a href="${deletecomment}"><i class="fa fa-trash" aria-hidden="true"></i></a>
 		  <a href="${replay1}"><i class="fa fa-reply" aria-hidden="true"></i></a>
 		  </td>
+		  
+		  
+		  <td>${commentlist.replay.replayer_msg}</td>
 		  
 		   </tr>
 		   

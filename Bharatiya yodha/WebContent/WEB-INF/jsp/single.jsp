@@ -27,6 +27,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 </script>
 
+
+<style>
+.scroll
+{
+overflow-Y:scroll;
+ height:500px;
+}
+
+/* width */
+.scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px grey; 
+    border-radius: 3px;
+}
+ 
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+    background: #ffd28e; 
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+    background: #ffd28e; 
+}
+</style>
+
 </head>
 <body>
 	<!-- header-section-starts -->
@@ -181,6 +212,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"> </div>
 					</div>
 				</div>	-->
+				
+				<div class="response">
+					<h4>Responses</h4>
+					<div class="media response-info scroll">
+					<c:forEach var="cmmtrply" items="${cmmtrply}">
+						<div class="media-left response-text-left">
+							<a href="#">
+								<img class="media-object" src="images/person.png" alt=""/>
+							</a>
+							<h5><a href="#">${cmmtrply.commenter_name}</a></h5>
+						</div>
+						<div class="media-body response-text-right">
+							<p>${cmmtrply.commenter_message}</p>
+							<ul>
+								<li>Sep 21, 2015</li>
+								<li><a href="single.html">Reply</a></li>
+							</ul>
+							<div class="media response-info">
+								<div class="media-left response-text-left">
+									<a href="#">
+										<img class="media-object" src="images/person.png" alt=""/>
+									</a>
+									<h5><a href="#">Username</a></h5>
+								</div>
+								<div class="media-body response-text-right">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+										sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+									<ul>
+										<li>July 17, 2015</li>
+										<li><a href="single.html">Reply</a></li>
+									</ul>		
+								</div>
+								
+								
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+							</c:forEach>					
+					</div>
+				
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
 				<div class="coment-form">
 					<h4>Leave your comment</h4>
 					<form:form action="postComment.html" onsubmit="return FormValidation();" onchange="return FormValidation();" modelAttribute="comments">
@@ -226,6 +306,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="col-md-9 item-details">
 												<h5 class="inner two" style="text-align: justify;"><a href="${viewarticle}">${usergridlist.article_brief}</a></h5>
 												 <div class="td-post-date two"><i class="glyphicon glyphicon-time"></i>${usergridlist.article_date}<a href="#"><i class="glyphicon glyphicon-comment"></i>${usergridlist.article_comment}</a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>${usergridlist.article_view}</a><a class="span_link" href="${viewarticle}"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></div>
+											 		
 											 </div>
 											<div class="clearfix"></div>
 										</div>

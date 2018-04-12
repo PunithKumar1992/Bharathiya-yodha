@@ -156,12 +156,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             	 </div>
                                 
                                  <div class="col-md-3">
-									<form:input path="replay_msg" placeholder="Replay Message"/>                              
+									<form:textarea path="replayer_msg" rows="03" cols="25" style="resize:none;" placeholder="Replay Message"/>                              
                                 </div>
-                                
-								
-                                <div class="col-md-3">
-                                   </div>
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-info" style="margin-top:-2%">Submit</button>
                                 </div>

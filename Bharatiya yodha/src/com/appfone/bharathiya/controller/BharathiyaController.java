@@ -2,9 +2,9 @@ package com.appfone.bharathiya.controller;
 
 import java.io.File;
 
+
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.appfone.bharathiya.pojo.Byodhaarticles;
 import com.appfone.bharathiya.pojo.Byodhabanner;
 import com.appfone.bharathiya.pojo.Byodhacomments;
-import com.appfone.bharathiya.pojo.Byodhareply;
+import com.appfone.bharathiya.pojo.Byodhareplay;
 import com.appfone.bharathiya.service.AdminArticleService;
 import com.appfone.bharathiya.service.AdminCommentService;
 import com.appfone.bharathiya.service.AdminLoginService;
 import com.appfone.bharathiya.service.AdminRecoveryService;
+import com.appfone.bharathiya.service.AdminReplayService;
 import com.appfone.bharathiya.service.AdminbannerService;
 import com.appfone.bharathiya.util.Emailutility;
 
@@ -52,6 +53,9 @@ public class BharathiyaController {
 	
 	@Autowired
 	private AdminCommentService commentservice;
+	
+	@Autowired
+	private AdminReplayService replayservice;
 	
 	
 	
@@ -472,13 +476,54 @@ public class BharathiyaController {
 		
 	}
 	
+	@RequestMapping(value="/admincommentreplay")
+	public ModelAndView admincommentreplayController(@RequestParam("article_id")int article_id,@RequestParam("comment_id")int comment_id)
+	{
+		if((sessionn.getAttribute("activeuser"))==null)
+		{
+			ModelAndView mv= new ModelAndView();
+			mv.setViewName("login");
+			return mv;
+		}
+		Byodhareplay replay=new Byodhareplay();
+		ModelAndView mv= new ModelAndView();
+		mv.addObject("adminreplay", replay);
+		mv.addObject("replyartid", article_id);
+		mv.addObject("replycmtid", comment_id);
+		mv.setViewName("admincommentreplay");
+		return mv;
+		
+		
+	}
+	
+	
+	@RequestMapping(value="/saveadminreplay")
+	public String saveadminreplayController(@ModelAttribute("adminreplay")Byodhareplay replay,@RequestParam("replyartid")int article_id,@RequestParam("replycmtid")int comment_id)
+	{
+		if((sessionn.getAttribute("activeuser"))==null)
+		{
+			return "redirect:/admin.html";
+		}
+		replay.setArticle_id(article_id);
+		replay.setComment_id(comment_id);
+		
+		replayservice.saveReplay(replay);
+		return "redirect:/admincomment.html";
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value="/index")
 	public ModelAndView indexController()
 	{
 		List list = bannerservice.getAdminBannerList();
 		List artlist=articleservice.getadminArticles();
 		Collections.shuffle(artlist);
-
 		ModelAndView mv= new ModelAndView();
 		mv.addObject("usergridlist",artlist);
 		mv.addObject("userbannerlist", list);
@@ -497,9 +542,11 @@ public class BharathiyaController {
 		viewarticle.setArticle_view(views);
 		articleservice.updateArticle(viewarticle);
 		List artlist=articleservice.getadminArticles();
+		List cmmtrply= commentservice.getComments();
 		Collections.shuffle(artlist);
 		Byodhacomments comments= new Byodhacomments();
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("cmmtrply", cmmtrply);
 		mv.addObject("commentarticleid", article_id);
 		mv.addObject("currentarticle", viewarticle);
 		mv.addObject("usergridlist",artlist);

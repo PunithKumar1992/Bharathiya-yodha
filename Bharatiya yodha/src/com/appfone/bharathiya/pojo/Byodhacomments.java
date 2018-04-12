@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -40,7 +41,8 @@ public class Byodhacomments  {
 	private Byodhaarticles article;
 	
 	
-	
+	@OneToOne(mappedBy="comment")
+	private Byodhareplay replay;
 	
 	
 	
@@ -84,6 +86,12 @@ public class Byodhacomments  {
 	public String toString() {
 		return "Byodhacomments [comment_id=" + comment_id + ", commenter_name=" + commenter_name + ", commenter_email="
 				+ commenter_email + ", commenter_message=" + commenter_message + ", article_id=" + article_id + "]";
+	}
+	public Byodhareplay getReplay() {
+		return replay;
+	}
+	public void setReplay(Byodhareplay replay) {
+		this.replay = replay;
 	}
 
 	
