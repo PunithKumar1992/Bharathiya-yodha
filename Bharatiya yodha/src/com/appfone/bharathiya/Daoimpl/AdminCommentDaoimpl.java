@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,18 @@ public class AdminCommentDaoimpl implements AdminCommentDao {
 		query.setParameter("commentid", id);
 		int res= query.executeUpdate();
 		
+	}
+
+	@Override
+	@SuppressWarnings(value = "deprecation")
+	public List getCmmtRlpylist(int article_id) {
+		Session session = factory.getCurrentSession();
+		String sql = "SELECT * FROM Byodhacomments WHERE article_id = :article_id";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.addEntity(Byodhacomments.class);
+		query.setParameter("article_id", article_id);
+		List list = query.list();
+		return list;
 	}
 
 }

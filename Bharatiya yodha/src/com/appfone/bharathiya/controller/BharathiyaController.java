@@ -497,6 +497,7 @@ public class BharathiyaController {
 	}
 	
 	
+	
 	@RequestMapping(value="/saveadminreplay")
 	public String saveadminreplayController(@ModelAttribute("adminreplay")Byodhareplay replay,@RequestParam("replyartid")int article_id,@RequestParam("replycmtid")int comment_id)
 	{
@@ -542,10 +543,12 @@ public class BharathiyaController {
 		viewarticle.setArticle_view(views);
 		articleservice.updateArticle(viewarticle);
 		List artlist=articleservice.getadminArticles();
-		List cmmtrply= commentservice.getComments();
+		List cmmtrply= commentservice.getCmmtRlpylist(article_id);
 		Collections.shuffle(artlist);
 		Byodhacomments comments= new Byodhacomments();
+		Byodhareplay reply = new Byodhareplay();
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("replyuser", reply);
 		mv.addObject("cmmtrply", cmmtrply);
 		mv.addObject("commentarticleid", article_id);
 		mv.addObject("currentarticle", viewarticle);
@@ -568,6 +571,21 @@ public class BharathiyaController {
 		return "redirect:/viewarticle.html?article_id="+commentarticleid+"";
 	}
 	
+	@RequestMapping(value="/usercommentreplay")
+	public String usercommentreplayController(@RequestParam("article_id")int article_id,@RequestParam("comment_id")int comment_id,@ModelAttribute("replyuser")Byodhareplay reply)
+	{
+		
+		
+		reply.setArticle_id(article_id);
+		reply.setComment_id(comment_id);
+		
+		replayservice.saveReplay(reply);
+		
+		
+		return "redirect:/viewarticle.html?article_id="+article_id+"";
+		
+		
+	}
 	
 	
 	

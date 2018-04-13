@@ -40,7 +40,7 @@
   <script>
    $(window).load(function(){        
    $('#myModal').modal('show');
-    })
+    });
   </script>
 
 

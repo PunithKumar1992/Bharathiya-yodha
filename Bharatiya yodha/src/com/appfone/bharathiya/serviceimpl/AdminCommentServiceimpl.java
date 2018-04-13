@@ -52,4 +52,13 @@ public class AdminCommentServiceimpl implements AdminCommentService {
 		
 	}
 
+
+
+	@Override
+	@Transactional
+	public List getCmmtRlpylist(int article_id) {
+		List list = admincomment.getCmmtRlpylist(article_id);
+		return list;
+	}
+
 }

@@ -14,6 +14,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Open+Sans:700,700italic,800,300,300italic,400italic,400,600,600italic' rel='stylesheet' type='text/css'>
 <!--Custom-Theme-files-->
 	<link href="css/style.css" rel='stylesheet' type='text/css' />	
+	 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	
 	<script src="js/jquery.min.js"> </script>
 <!--/script-->
 <script type="text/javascript" src="js/move-top.js"></script>
@@ -26,6 +28,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 </script>
+ <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 
 
 <style>
@@ -215,51 +219,51 @@ overflow-Y:scroll;
 				
 				<div class="response">
 					<h4>Responses</h4>
-					<div class="media response-info scroll">
+					<div class="media response-info scroll" style="margin-bottom: 5%;">
 					<c:forEach var="cmmtrply" items="${cmmtrply}">
-						<div class="media-left response-text-left">
+					<c:url var="replay1" value="usercommentreplay.html">
+        <c:param name="article_id" value="${cmmtrply.article.article_id}"></c:param>
+      	<c:param name="comment_id" value="${cmmtrply.comment_id}"></c:param>
+        </c:url>
+						<div class="media-left response-text-left" style="margin-top: 5%;">
 							<a href="#">
 								<img class="media-object" src="images/person.png" alt=""/>
 							</a>
 							<h5><a href="#">${cmmtrply.commenter_name}</a></h5>
 						</div>
-						<div class="media-body response-text-right">
+						<div class="media-body response-text-right" style="margin-top: 5%;">
 							<p>${cmmtrply.commenter_message}</p>
-							<ul>
+							<ul style="margin-bottom: 14%;">
 								<li>Sep 21, 2015</li>
-								<li><a href="single.html">Reply</a></li>
+								 <li><a href="" onclick="showmd('${replay1}');" > Reply</a></li>
+							
 							</ul>
+							
+							
+							<c:if test="${not empty cmmtrply.replay.replayer_msg}">
 							<div class="media response-info">
 								<div class="media-left response-text-left">
 									<a href="#">
 										<img class="media-object" src="images/person.png" alt=""/>
 									</a>
-									<h5><a href="#">Username</a></h5>
+									<h5><a href="#myModal" >${cmmtrply.replay.replayer_name}</a></h5>
 								</div>
 								<div class="media-body response-text-right">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-										sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+									<p>${cmmtrply.replay.replayer_msg}</p>
 									<ul>
 										<li>July 17, 2015</li>
-										<li><a href="single.html">Reply</a></li>
+										<li><a href="" onclick="showmd('${replay1}');">Reply</a></li>
 									</ul>		
 								</div>
-								
-								
 							</div>
+							</c:if>
+														
 						</div>
 						<div class="clearfix"> </div>
 							</c:forEach>					
 					</div>
-				
+	
 				</div>
-				
-				
-				
-				
-				
-				
-				
 				
 				<div class="coment-form">
 					<h4>Leave your comment</h4>
@@ -372,6 +376,43 @@ overflow-Y:scroll;
 	</div>
 	<div class="clearfix"> </div>
 </div>	
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 85%;margin-top: 30%;height: 355px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Reply for Comment</h4>
+      </div>
+      <div class="modal-body" style="height: 130px;">
+       
+        <form:form action="" id="replyform" method="post" modelAttribute="replyuser">
+        <div class="col-md-9">
+        <form:input path="replayer_name" name="Replayer Name" placeholder="Name" style="border-radius: 0.75em;width: 90%;padding: 0.75em;margin-bottom: 5%;"/>
+        </div>
+       
+        <div class="col-md-9">
+        <form:textarea path="replayer_msg" rows="3" cols="25" placeholder="Message" style="width: 89%;height: 115px;border-radius: 1em;resize:none;"/>
+        </div>
+<!--  <button type="submit" class="btn btn-default"  data-dismiss="modal"  style="float:right;">Reply</button>
+ -->        
+ <input type="submit" value="Reply" class="btn btn-default" style="margin-top: 42%;">
+ 
+ </form:form>
+       </div>
+      <div class="modal-footer" style="margin-top:14%;">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Close</button>
+        
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
 		<!--//footer-->
 			<!--start-smooth-scrolling-->
 						<script type="text/javascript">
@@ -487,8 +528,21 @@ function FormValidation()
    }
    
     	
-   	
 }
+
 </script>
+
+<script type="text/javascript">
+function showmd(temp)
+{
+	alert(temp);
+	
+	$('#myModal').modal('show');
+	$('#replyform').attr('action',temp);
+	}
+
+
+</script>
+
 </body>
 </html>

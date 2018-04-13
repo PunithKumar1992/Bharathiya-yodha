@@ -156,6 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th style="width:20%">For Article
             <th style="width:20%"> Action</th>
             <th style="width:20%">Rply for comment</th>
+            <th style="width:20%">Replay person</th>
             
           </tr>
         </thead>
@@ -185,6 +186,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  
 		  
 		  <td>${commentlist.replay.replayer_msg}</td>
+		  <td>${commentlist.replay.replayer_name}</td>
 		  
 		   </tr>
 		   
