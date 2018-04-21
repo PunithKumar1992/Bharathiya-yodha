@@ -10,6 +10,6 @@ public interface AdminCommentDao {
 	public int getcommentcount(int id);
 	public List getComments();
 	public void deleteComment(int id);
-	public List getCmmtRlpylist(int article_id);
+	public List getCmmtRlpylist(int id);
 
 }

@@ -14,6 +14,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Open+Sans:700,700italic,800,300,300italic,400italic,400,600,600italic' rel='stylesheet' type='text/css'>
 <!--Custom-Theme-files-->
 	<link href="css/style.css" rel='stylesheet' type='text/css' />	
+	 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	
 	<script src="js/jquery.min.js"> </script>
 <!--/script-->
 <script type="text/javascript" src="js/move-top.js"></script>
@@ -26,12 +28,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 </script>
-
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+ <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-
- 
-
 
 
 <style>
@@ -64,7 +62,6 @@ overflow-Y:scroll;
 }
 </style>
 
-
 </head>
 <body>
 	<!-- header-section-starts -->
@@ -79,12 +76,9 @@ overflow-Y:scroll;
 					</ul>
 					<div class="search-box">
 					    <div class="b-search">
-								<form>
+								<form >
 										<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
 										<input type="submit" value="">
-										<input type="hidden" id="rplychk" value="${sessionScope.loggeduser}">
-										<input type="hidden" id="loggedfirst" value="${sessionScope.loggeduserfirst}">
-										
 								</form>
 							</div>
 						</div>
@@ -152,10 +146,8 @@ overflow-Y:scroll;
 						   </div>
 
 					    </div>
-					    
-					    
-					    
-									<div class="response">
+						
+				<div class="response">
 					<h4>Responses</h4>
 					<div class="media response-info scroll" style="margin-bottom: 5%;">
 					<c:forEach var="comment" items="${cmmtrply}">
@@ -203,9 +195,7 @@ overflow-Y:scroll;
 					</div>
 	
 				</div>
-					
-					
-					
+				
 				<div class="coment-form">
 					<h4>Leave your comment</h4>
 					<form:form action="postComment.html" onsubmit="return FormValidation();" onchange="return FormValidation();" modelAttribute="comments">
@@ -221,7 +211,7 @@ overflow-Y:scroll;
 			<!--//banner-->
 					<!--//banner-section-->
 			<div class="banner-right-text">
-			 <h3 class="tittle">Article <i class="glyphicon glyphicon-facetime-video"></i></h3>
+			 <h3 class="tittle">Article  <i class="glyphicon glyphicon-facetime-video"></i></h3>
 			<!--/general-news-->
 			 <div class="general-news">
 				<div class="general-inner">
@@ -231,19 +221,19 @@ overflow-Y:scroll;
 				</c:url>
 					<div class="general-text">
 						 <a href="${viewarticle}"><img src="images/articlegridimages/${usergridlist.article_gridimage}" class="img-responsive" alt=""></a>
-						       <h5 class="top"><a href="${viewarticle}">${usergridlist.article_person}</a></h5>
+						    <h5 class="top"><a href="${viewarticle}">${usergridlist.article_person}</a></h5>
 							<p class="sub" style="text-align: justify;">${usergridlist.article_brief}</p>
 						    <p>${usergridlist.article_date} <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>${usergridlist.article_comment}</a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>${usergridlist.article_view}</a><a class="span_link" href="${viewarticle}"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></p>
 					 </div>
 					 </c:forEach>
-					 
-					 <marquee behavior="scroll" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
+			<marquee behavior="scroll" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
+
 					 <div class="edit-pics">
-					  <c:forEach var="usergridlist" items="${usergridlist}" >
+					 <c:forEach var="usergridlist" items="${usergridlist}" >
 					 <c:url  var="viewarticle" value="viewarticle.html">
 				<c:param name="article_id" value="${usergridlist.article_id}"></c:param>
 				</c:url>
-							      <div class="editor-pics">
+					 		      <div class="editor-pics">
 										 <div class="col-md-3 item-pic">
 										   <img src="images/articlegridimages/${usergridlist.article_gridimage}" class="img-responsive" alt="">
 
@@ -251,13 +241,17 @@ overflow-Y:scroll;
 											<div class="col-md-9 item-details">
 												<h5 class="inner two" style="text-align: justify;"><a href="${viewarticle}">${usergridlist.article_brief}</a></h5>
 												 <div class="td-post-date two"><i class="glyphicon glyphicon-time"></i>${usergridlist.article_date}<a href="#"><i class="glyphicon glyphicon-comment"></i>${usergridlist.article_comment}</a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>${usergridlist.article_view} </a></div>
+											
 											 </div>
 											<div class="clearfix"></div>
 										</div>
 										</c:forEach>
 					
+										
+										
 									</div>
 									</marquee>
+									
 								<div class="media">	
 								 <h3 class="tittle media">Media <i class="glyphicon glyphicon-floppy-disk"></i></h3>
 								  <div class="general-text two">
@@ -280,10 +274,6 @@ overflow-Y:scroll;
 			<!--/news-->
 		 </div>
 			<div class="clearfix"> </div>
-			
-	
-			
-			
 	<!--/footer-->
 	     <div class="footer">
 				 <div class="footer-top">
@@ -319,12 +309,42 @@ overflow-Y:scroll;
 	<div class="clearfix"> </div>
 </div>	
 
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 85%;margin-top: 30%;height: 355px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Reply for Comment</h4>
+      </div>
+      <div class="modal-body" style="height: 130px;">
+       
+        <form:form action="" id="replyform" method="post" modelAttribute="replyuser">
+        <div class="col-md-9">
+        <form:input path="replayer_name" name="Replayer Name" placeholder="Name" style="border-radius: 0.75em;width: 90%;padding: 0.75em;margin-bottom: 5%;"/>
+        </div>
+       
+        <div class="col-md-9">
+        <form:textarea path="replayer_msg" rows="3" cols="25" placeholder="Message" style="width: 89%;height: 115px;border-radius: 1em;resize:none;"/>
+        </div>
+<!--  <button type="submit" class="btn btn-default"  data-dismiss="modal"  style="float:right;">Reply</button>
+ -->        
+ <input type="submit" value="Reply" class="btn btn-default" style="margin-top: 42%;">
+ 
+ </form:form>
+       </div>
+      <div class="modal-footer" style="margin-top:14%;">
+        <button type="button" class="btn btn-default" style="float:left;" data-dismiss="modal">Close</button>
+        
+      </div>
+      
+    </div>
+
+  </div>
+</div>
 
 
-
-
-
-			
 		<!--//footer-->
 			<!--start-smooth-scrolling-->
 						<script type="text/javascript">
@@ -343,7 +363,6 @@ overflow-Y:scroll;
 									});
 								</script>
 		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
 
 <script type="text/javascript">
 function FormValidation()
@@ -445,77 +464,17 @@ function FormValidation()
 
 </script>
 
-
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content" style="width: 85%;margin-top: 30%;height: 355px;">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Reply for Comment</h4>
-      </div>
-      <div class="modal-body" style="height: 130px;">
-       
-        <form:form action="" id="replyform" method="post" modelAttribute="replyuser">
-        <div class="col-md-9">
-        <form:input path="replayer_name" id="replayer_name" readonly="" name="Replayer Name" placeholder="Name" style="border-radius: 0.75em;width: 90%;padding: 0.75em;margin-bottom: 5%;"/>
-        </div>
-       
-        <div class="col-md-9">
-        <form:textarea path="replayer_msg" rows="3" cols="25" placeholder="Message" style="width: 89%;height: 115px;border-radius: 1em;resize:none;"/>
-        </div>
-<!--  <button type="submit" class="btn btn-default"  data-dismiss="modal"  style="float:right;">Reply</button>
- -->        
- <input type="submit" value="Reply" class="btn btn-default" style="margin-top: 42%;">
- 
- </form:form>
-       </div>
-      <div class="modal-footer" style="margin-top:14%;">
-        <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Close</button>
-        
-      </div>
-      
-    </div>
-
-  </div>
-</div>
-
-
-
-
 <script type="text/javascript">
 function showmd(temp)
 {
-
-	var str=$("#rplychk").val();
-	var firstname=$("#loggedfirst").val();
+	alert(temp);
 	
-	if(str.length >0)
-		{
-	$('#replayer_name').val(firstname);
 	$('#myModal').modal('show');
 	$('#replyform').attr('action',temp);
-		}
-	else
-		{
-		window.location.href = "userlogin.html"
-		}
-	
+	}
 
-}
+
 </script>
-
-
- <!-- <script type="text/javascript">
-$(document).ready(function(){
-	var str=$("#rplychk").val();
-	alert(str)
-});
-
-</script> -->
-
-
 
 </body>
 </html>

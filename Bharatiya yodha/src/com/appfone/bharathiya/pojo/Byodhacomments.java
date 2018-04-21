@@ -1,6 +1,8 @@
 package com.appfone.bharathiya.pojo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,11 +41,10 @@ public class Byodhacomments  {
 	@ManyToOne
 	@JoinColumn(name="article_id",insertable=false, updatable=false)
 	private Byodhaarticles article;
+
 	
-	
-	@OneToOne(mappedBy="comment")
-	private Byodhareplay replay;
-	
+	@OneToMany(mappedBy="comment",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
+	private List<Byodhareplay>replay=new ArrayList<Byodhareplay>();
 	
 	
 	public Byodhaarticles getArticle() {
@@ -87,12 +88,13 @@ public class Byodhacomments  {
 		return "Byodhacomments [comment_id=" + comment_id + ", commenter_name=" + commenter_name + ", commenter_email="
 				+ commenter_email + ", commenter_message=" + commenter_message + ", article_id=" + article_id + "]";
 	}
-	public Byodhareplay getReplay() {
+	public List<Byodhareplay> getReplay() {
 		return replay;
 	}
-	public void setReplay(Byodhareplay replay) {
+	public void setReplay(List<Byodhareplay> replay) {
 		this.replay = replay;
 	}
+	
 
 	
 	

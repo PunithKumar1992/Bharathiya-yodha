@@ -258,7 +258,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<td>${adminarticles.article_comment}</td>
 			<td>
 		 
-		<a href="${deletearticle}"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+		<a href="${deletearticle}" onclick="return confirmActiondelete();"> <i class="fa fa-trash" aria-hidden="true"></i></a>
 		  </td>
 		 
 		   </tr>
@@ -269,6 +269,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
         </tbody>
       </table>
+      
     </div>
     
   </div>
@@ -353,6 +354,13 @@ function assign(count)
 	document.getElementById("artcount").value=count-1;
 	  
 }
+
+
+function confirmActiondelete() {
+		if (!confirm("Are You Sure You want to Delete?")) {
+			return false;
+		}
+	}
 </script>
  <script src="adminjs/pikaday.js"></script>
     <script>

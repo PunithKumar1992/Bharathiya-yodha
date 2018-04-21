@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,8 +31,8 @@ public class Byodhareplay {
 	@Column(name="article_id")
 	private int article_id;
 	
-	@OneToOne
-	@JoinColumn(name="comment_id",insertable=false,updatable=false)
+	@ManyToOne(optional=false)
+	@JoinColumn(name="comment_id",insertable=false, updatable=false)
 	private Byodhacomments comment;
 
 	public int getReplay_id() {
@@ -81,6 +83,8 @@ public class Byodhareplay {
 	public void setComment(Byodhacomments comment) {
 		this.comment = comment;
 	}
+
+	
 	
 	
 	

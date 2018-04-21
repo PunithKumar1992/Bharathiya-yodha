@@ -5,6 +5,7 @@ import java.io.File;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -19,16 +20,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.appfone.bharathiya.Dao.UserDao;
 import com.appfone.bharathiya.pojo.Byodhaarticles;
 import com.appfone.bharathiya.pojo.Byodhabanner;
 import com.appfone.bharathiya.pojo.Byodhacomments;
 import com.appfone.bharathiya.pojo.Byodhareplay;
+import com.appfone.bharathiya.pojo.Byodhauserregistration;
 import com.appfone.bharathiya.service.AdminArticleService;
 import com.appfone.bharathiya.service.AdminCommentService;
 import com.appfone.bharathiya.service.AdminLoginService;
 import com.appfone.bharathiya.service.AdminRecoveryService;
 import com.appfone.bharathiya.service.AdminReplayService;
 import com.appfone.bharathiya.service.AdminbannerService;
+import com.appfone.bharathiya.service.UserService;
 import com.appfone.bharathiya.util.Emailutility;
 
 @Controller
@@ -544,6 +548,9 @@ public class BharathiyaController {
 		articleservice.updateArticle(viewarticle);
 		List artlist=articleservice.getadminArticles();
 		List cmmtrply= commentservice.getCmmtRlpylist(article_id);
+		
+		Iterator itr =cmmtrply.iterator();
+		System.out.println("in view article controller");
 		Collections.shuffle(artlist);
 		Byodhacomments comments= new Byodhacomments();
 		Byodhareplay reply = new Byodhareplay();
@@ -587,8 +594,85 @@ public class BharathiyaController {
 		
 	}
 	
+	@RequestMapping(value="/registration")
+	public ModelAndView registrationController()
+	{
+		ModelAndView mv = new ModelAndView();
+		Byodhauserregistration userreg= new Byodhauserregistration();
+		mv.addObject("userreg", userreg);
+		mv.setViewName("registration");
+		return mv;
+	}
+	
+
+	@RequestMapping(value="/userlogin")
+	public ModelAndView userloginController()
+	{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("userlogin");
+		return mv;
+	}
+	@Autowired
+	private UserService userservice;
+	
+	@RequestMapping(value="/saveuser")
+	public String saveuserController(@ModelAttribute("userreg") Byodhauserregistration userreg)
+	{
+		String username=userreg.getUser_loginname();
+		int res=userservice.checkforUsername(username);
+		if(res==0)
+		{
+			userservice.saveUser(userreg);
+			return"redirect:/usernameavail.html";
+		}
+		
+		return "redirect:/usernamenot.html";
+	}
 	
 	
+	@RequestMapping(value="/usernameavail")
+	public String usernameavailController()
+	{
+		return "redirect:index.html";
+	}
 	
+	
+	@RequestMapping(value="/usernamenot")
+	public ModelAndView usernamenotController()
+	{
+		Byodhauserregistration userreg = new Byodhauserregistration();
+		ModelAndView mv= new ModelAndView();
+		mv.addObject("namealready", "* The Login name is already exist * ");
+		mv.addObject("userreg", userreg);
+		
+		mv.setViewName("registration");
+		
+		return mv;
+	}
+
+	@RequestMapping(value="/userbashboard")
+	public String userbashboardController(@RequestParam("username")String username,@RequestParam("userpass")String userpass)
+	{
+		int res= userservice.userlogincheck(username, userpass);
+		String loggedfirstname= userservice.getnameofloggeduser(username);
+				
+		if(res==1)
+		{
+			sessionn.setAttribute("loggeduserfirst", loggedfirstname);
+			sessionn.setAttribute("loggeduser", username);
+			return "redirect:/index.html";
+		}
+		return "redirect:/failurelogin.html";
+	}
+	
+	@RequestMapping(value="/failurelogin.html")
+	public ModelAndView failureloginController()
+	{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("userlogin");
+		mv.addObject("userlogerr", "* User name or Password missmatch *");
+		return mv;
+		
+	}
 	
 }

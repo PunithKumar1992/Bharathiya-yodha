@@ -56,7 +56,7 @@ public class AdminCommentDaoimpl implements AdminCommentDao {
 		
 	}
 
-	@Override
+	/*@Override
 	@SuppressWarnings(value = "deprecation")
 	public List getCmmtRlpylist(int article_id) {
 		Session session = factory.getCurrentSession();
@@ -66,6 +66,18 @@ public class AdminCommentDaoimpl implements AdminCommentDao {
 		query.setParameter("article_id", article_id);
 		List list = query.list();
 		return list;
+	}*/
+	
+	@Override
+	@SuppressWarnings(value = "deprecation")
+	public List getCmmtRlpylist(int id) {
+		Session session = factory.getCurrentSession();
+		Query<Byodhacomments> query = session.createQuery("from Byodhacomments where article_id=" +id);
+		List list = query.list();
+		return list;
 	}
+	
+	
+	
 
 }
